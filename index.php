@@ -45,6 +45,8 @@
       if ($conn->connect_error) {
           die("Connection failed: " . $conn->connect_error);
       }
+
+      $query = ""
     ?>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -283,7 +285,7 @@
       </div>
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12">
-          <form id="query-form" role="form" method="post" action="query.php">
+          <form id="query-form" role="form" method="post" action="index.php">
             <h3>SQL Query Entry</h3>
             <textarea name="query" class="form-control" rows="10"></textarea>
             <button type="submit" class="btn btn-default">Submit</button>
@@ -291,7 +293,18 @@
         </div>
         <div class="col-lg-8 col-md-8 col-sm-12">
           <div id="result">
-            
+            <h3>Result</h3>
+            <?php $query = $_POST["query"]; ?>
+            <!-- <p><strong>QUERY:</strong> <?php echo $query; ?></p> -->
+            <?php
+              if (strpos(strtolower($query), "drop") !== false) {
+                echo "<div class='alert alert-danger' role='alert'><p><strong>ERROR: </strong>You may not use the DROP function!</p></div>";
+              } else {
+                echo "<div class='alert alert-success' role='alert'><p><strong>SUCCESS: </strong>Good, you didn't use DROP!</p></div>";
+                include 'query.php';
+                executeQuery($query);
+              };
+            ?>
           </div>
         </div>
       </div>
