@@ -281,6 +281,20 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <form id="query-form" role="form" method="post" action="query.php">
+            <h3>SQL Query Entry</h3>
+            <textarea name="query" class="form-control" rows="10"></textarea>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12">
+          <div id="result">
+            
+          </div>
+        </div>
+      </div>
     </div><!-- /.container -->
 
 
