@@ -77,14 +77,14 @@
       <div class="row">
         <div class="col-sm-12">
           <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#book" data-toggle="tab">Book</a></li>
-            <li role="presentation"><a href="#customer" data-toggle="tab">Customer</a></li>
-            <li role="presentation"><a href="#employee" data-toggle="tab">Employee</a></li>
-            <li role="presentation"><a href="#order" data-toggle="tab">Order</a></li>
-            <li role="presentation"><a href="#order-detail" data-toggle="tab">Order Detail</a></li>
-            <li role="presentation"><a href="#shipper" data-toggle="tab">Shipper</a></li>
-            <li role="presentation"><a href="#subject" data-toggle="tab">Subject</a></li>
-            <li role="presentation"><a href="#supplier" data-toggle="tab">Supplier</a></li>
+            <li role="presentation" class="active"><a href="#book" data-toggle="tab">book</a></li>
+            <li role="presentation"><a href="#customer" data-toggle="tab">customer</a></li>
+            <li role="presentation"><a href="#employee" data-toggle="tab">employee</a></li>
+            <li role="presentation"><a href="#order" data-toggle="tab">order_</a></li>
+            <li role="presentation"><a href="#order-detail" data-toggle="tab">order_detail</a></li>
+            <li role="presentation"><a href="#shipper" data-toggle="tab">shipper</a></li>
+            <li role="presentation"><a href="#subject" data-toggle="tab">subject</a></li>
+            <li role="presentation"><a href="#supplier" data-toggle="tab">supplier</a></li>
           </ul>
           <!-- Tab panes -->
           <div class="tab-content">
@@ -300,7 +300,6 @@
               if (strpos(strtolower($query), "drop") !== false) {
                 echo "<div class='alert alert-danger' role='alert'><p><strong>ERROR: </strong>You may not use the DROP function!</p></div>";
               } else {
-                echo "<div class='alert alert-success' role='alert'><p><strong>SUCCESS: </strong>Good, you didn't use DROP!</p></div>";
                 include 'query.php';
                 executeQuery($query);
               };
