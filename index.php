@@ -295,13 +295,13 @@
           <div id="result">
             <h3>Result</h3>
             <?php $query = $_POST["query"]; ?>
-            <!-- <p><strong>QUERY:</strong> <?php echo $query; ?></p> -->
+            <p><strong>QUERY:</strong> <?php echo stripslashes($query); ?></p>
             <?php
               if (strpos(strtolower($query), "drop") !== false) {
                 echo "<div class='alert alert-danger' role='alert'><p><strong>ERROR: </strong>You may not use the DROP function!</p></div>";
               } else {
                 include 'query.php';
-                executeQuery($query);
+                executeQuery(stripslashes($query));
               };
             ?>
           </div>

@@ -1,0 +1,19 @@
+SELECT S.categoryName FROM subject S JOIN book B ON B.subjectID=S.subjectID JOIN supplier P ON P.supplierID=B.supplierID WHERE P.companyName='supplier2'
+SELECT Title, Max(UnitPrice) as Price FROM book B JOIN supplier S ON B.supplierID=S.supplierID WHERE S.companyName='supplier3'
+SELECT DISTINCT B.Title FROM book B JOIN order_detail D ON D.bookID=B.bookID JOIN order_ O ON O.orderID=D.orderID JOIN customer C ON C.customerID=O.customerID WHERE C.lastName='lastname1' AND C.firstName='firstname1'
+SELECT Title FROM book WHERE (Quantity>10)
+SELECT Sum(D.Quantity*B.UnitPrice) as Total FROM customer C JOIN order_ O ON O.customerID=C.customerID JOIN order_detail D on D.orderID=O.orderID JOIN book B ON B.bookID=D.bookID WHERE C.firstName='firstName1' AND C.lastName='lastname1'
+SELECT C.firstName, C.lastName FROM customer C JOIN order_ O ON O.customerID=C.customerID JOIN order_detail D on D.orderID=O.orderID JOIN book B ON B.bookID=D.bookID GROUP BY C.firstName HAVING Sum(B.UnitPrice*D.Quantity) < 80
+SELECT B.title FROM book B JOIN supplier S ON S.supplierID=B.supplierID WHERE S.companyName='supplier2'
+SELECT C.firstName, C.lastName, Sum(B.UnitPrice*D.Quantity) as Total FROM customer C JOIN order_ O ON O.customerID=C.customerID JOIN order_detail D on D.orderID=O.orderID JOIN book B ON B.bookID=D.bookID GROUP BY C.firstName ORDER BY Total DESC
+SELECT B.title, S.shipperName FROM book B JOIN order_detail D ON D.bookID=B.bookID JOIN order_ O ON O.orderID=D.orderID JOIN shipper S ON S.shipperID=O.shipperID WHERE O.shippedDate='8/4/2016'
+SELECT DISTINCT B.title FROM book B JOIN order_detail D ON D.bookID=B.bookID JOIN order_ O ON O.orderID=D.orderID JOIN customer C ON C.customerID=O.customerID WHERE C.firstName='firstname1' AND C.lastName='lastname1' AND title IN (SELECT B.title FROM book B JOIN order_detail D ON D.bookID=B.bookID JOIN order_ O ON O.orderID=D.orderID JOIN customer C ON C.customerID=O.customerID WHERE C.firstName='firstname4' AND C.lastName='lastname4')
+SELECT B.title FROM book B JOIN order_detail D ON D.bookID=B.bookID JOIN order_ O ON O.orderID=D.orderID JOIN employee E ON E.employeeID=O.employeeID WHERE E.firstName='firstname6' AND E.lastName='lastname6'
+SELECT B.title, SUM(D.quantity) as TotalQuantity FROM book B JOIN order_detail D ON D.bookID=B.bookID GROUP BY B.title ORDER BY TotalQuantity ASC
+SELECT C.firstName, C.lastName FROM customer C JOIN order_ O ON O.customerID=C.customerID JOIN order_detail D ON D.orderID=O.orderID GROUP BY C.firstName HAVING SUM(D.quantity) >= 2
+SELECT C.firstName, C.lastName, B.title FROM customer C JOIN order_ O ON O.customerID=C.customerID JOIN order_detail D ON D.orderID=O.orderID JOIN book B ON B.bookID=D.bookID JOIN subject S ON S.subjectID=B.subjectID WHERE S.categoryName IN ('category3', 'category4')
+SELECT DISTINCT C.firstName, C.lastName FROM customer C JOIN order_ O ON O.customerID=C.customerID JOIN order_detail D ON D.orderID=O.orderID JOIN book B ON B.bookID=D.bookID WHERE B.author='author1'
+SELECT E.firstName, E.lastName, Sum(B.UnitPrice*D.Quantity) as Total FROM employee E JOIN order_ O ON O.employeeID=E.employeeID JOIN order_detail D on D.orderID=O.orderID JOIN book B ON B.bookID=D.bookID GROUP BY E.firstName
+SELECT B.title, B.quantity FROM book B JOIN order_detail D ON D.bookID=B.bookID JOIN order_ O ON O.orderID=D.orderID WHERE O.shippedDate NOT IN ('8/4/2016', '8/3/2016') OR O.shippedDate IS NULL
+SELECT C.firstName, C.lastName, SUM(D.quantity) as Total FROM customer C JOIN order_ O ON O.customerID=C.customerID JOIN order_detail D ON D.orderID=O.orderID GROUP BY C.firstName HAVING SUM(D.quantity) > 1
+SELECT C.firstName, C.lastName, C.phone FROM customer C JOIN order_ O ON O.customerID=C.customerID JOIN order_detail D ON D.orderID=O.orderID GROUP BY C.firstName HAVING SUM(D.quantity) > 3
